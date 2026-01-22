@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>De Dagelijkse Derby</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #1a4d2e;
+        /* Modern Deep Green Mesh Gradient */
+        background-image: 
+          radial-gradient(at 0% 0%, hsla(134, 60%, 35%, 1) 0, transparent 50%), 
+          radial-gradient(at 50% 0%, hsla(125, 70%, 45%, 1) 0, transparent 50%), 
+          radial-gradient(at 100% 0%, hsla(134, 60%, 35%, 1) 0, transparent 50%);
+        background-attachment: fixed;
+        background-size: cover;
+        color: #1A1A1A;
+        min-height: 100vh;
+      }
+      
+      /* Subtle noise texture overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.3);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.5);
+      }
+      
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 
+          0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+          0 2px 4px -1px rgba(0, 0, 0, 0.06),
+          inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      }
+
+      .glass-card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .glass-card-hover:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 
+          0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+          0 10px 10px -5px rgba(0, 0, 0, 0.04),
+          0 0 20px rgba(255, 255, 255, 0.4);
+      }
+
+      /* Crawl Animation: Move from Left (-100px) to Right (100% + buffer) */
+      @keyframes crawl {
+        0% { transform: translateX(-150px); }
+        100% { transform: translateX(100vw); }
+      }
+      
+      .animate-crawl {
+        animation: crawl 15s linear infinite;
+      }
+
+      /* Tear Drop Animation */
+      @keyframes tear {
+        0% { transform: translateY(0) scale(0.5); opacity: 0.8; }
+        100% { transform: translateY(20px) scale(1); opacity: 0; }
+      }
+
+      .animate-tear {
+        animation: tear 1.5s infinite ease-in;
+      }
+      
+      .animate-tear-delay {
+        animation: tear 1.5s infinite ease-in;
+        animation-delay: 0.75s;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              gonect: {
+                primary: '#2DB34A', // Gonect Green
+                dark: '#14532d',
+                black: '#111827', 
+                text: '#1f2937', 
+                surface: '#F3F4F6',
+              }
+            },
+            backgroundImage: {
+              'gonect-gradient': 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+              'gold-gradient': 'linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)',
+              'silver-gradient': 'linear-gradient(135deg, #E5E7EB 0%, #9CA3AF 100%)',
+              'bronze-gradient': 'linear-gradient(135deg, #fdba74 0%, #ea580c 100%)',
+            },
+            boxShadow: {
+              'soft': '0 10px 40px -10px rgba(0,0,0,0.1)',
+              'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.3)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
